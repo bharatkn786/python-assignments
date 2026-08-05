@@ -58,3 +58,35 @@ The repository includes screenshots showing:
 
 
 - Running the same program in Python 3.8 and observing the syntax error
+
+# 🐧 GitHub Deployment using Ubuntu (WSL)
+
+This assignment was pushed to GitHub using the **Ubuntu 22.04 LTS (WSL)** terminal instead of Windows PowerShell.
+
+The workflow included:
+
+- Navigating to the project using Linux commands.
+- Initializing the Git repository.
+- Adding the GitHub remote.
+- Committing the project.
+- Authenticating using a GitHub Personal Access Token (PAT).
+- Successfully pushing the project to GitHub from Ubuntu (WSL).
+
+### Successful Git Push from Ubuntu (WSL)
+
+<img width="1520" height="676" alt="Screenshot 2026-08-05 135611" src="https://github.com/user-attachments/assets/6965d263-a95c-42e7-876c-1342043bc4a8" />
+
+
+<!-- Add your Linux Git Push screenshot here -->
+
+---
+##  Conclusion
+
+This assignment demonstrates:
+
+- Installing and managing multiple Python versions.
+- Creating version-specific virtual environments.
+- Using Python 3.11 language features and comparing them with Python 3.8.
+- Switching seamlessly between Python versions.
+- Successfully managing the project using Git and GitHub.
+- Deploying the project from **Ubuntu (WSL)** using Linux command-line tools.
