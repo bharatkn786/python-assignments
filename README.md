@@ -6,7 +6,7 @@ This repository contains my Python assignments completed as part of my learning 
 
 ## 📂 Repository Structure
 
-```
+```text
 python-assignments/
 │
 ├── README.md
@@ -17,23 +17,27 @@ python-assignments/
 │   ├── .gitignore
 │   └── screenshots/
 │
-├── Assignment-1/
+├── week1-lab1/
+│   ├── .venv/
+│   ├── main.py
+│   ├── README.md
+│   ├── requirements.txt
+│   └── .gitignore
 │
 ├── Assignment-2/
 │
 └── Assignment-3/
 ```
 
----
 
 ## 📋 Assignments
 
 | Assignment | Topic | Status |
 |------------|----------------------------|--------|
-|  [Assignment-0](./Assignment-0/) | Python Version Management | ✅ Completed |
-| Lab-1 | Coming Soon | ⏳ |
-| Lab-2 | Coming Soon | ⏳ |
-| Lab-3 | Coming Soon | ⏳ |
+| [Assignment-0](./Assignment-0/) | Python Version Management | ✅ Completed |
+| [week1-lab1](./week1-lab1/) | Project and Environment Setup | ✅ Completed |
+| Assignment-2 | Coming Soon | ⏳ |
+| Assignment-3 | Coming Soon | ⏳ |
 
 ---
 
