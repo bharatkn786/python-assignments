@@ -7,7 +7,7 @@ This repository contains my Python assignments completed as part of my learning 
 ## 📂 Repository Structure
 
 ```text
-python-assignments/
+python-assignment/
 │
 ├── README.md
 │
@@ -24,7 +24,13 @@ python-assignments/
 │   ├── requirements.txt
 │   └── .gitignore
 │
-├── Assignment-2/
+├── week1-lab2/
+│   ├── .venv/
+│   ├── main.py
+│   ├── numbers.txt
+│   ├── README.md
+│   ├── requirements.txt
+│   └── .gitignore
 │
 └── Assignment-3/
 ```
