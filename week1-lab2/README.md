@@ -1,17 +1,18 @@
 # Week 1 - Lab 2: Python Fluency Practice
 
-## 📌 Objective
+## Overview
 
-Build fluency in writing small, correct, and readable Python functions using:
-- Functions
-- List comprehensions
-- `collections.Counter`
-- File handling
-- Exception handling
+This lab focuses on strengthening Python programming fundamentals by implementing commonly used programming techniques such as word counting, list flattening, file handling, and exception handling. The lab also demonstrates multiple approaches to solving the same problem using Python's built-in libraries and language features.
 
 ---
 
-## 📂 Project Structure
+## Problem Statement
+
+The objective of this lab was to improve Python programming fluency by implementing reusable functions, practicing list comprehensions, utilizing the `collections.Counter` module, reading numerical data from files, and handling common runtime exceptions. Different implementations were compared to understand Pythonic approaches and improve code readability and efficiency.
+
+---
+
+## Project Structure
 
 ```text
 week1-lab2/
@@ -25,29 +26,77 @@ week1-lab2/
 
 ---
 
-## 🚀 Tasks Completed
+## Implementation
 
--  Implemented `word_count(text)` using a dictionary.
--  Reimplemented `word_count(text)` using `collections.Counter`.
--  Verified that both implementations produce the same result.
--  Implemented `flatten(list_of_lists)` using nested loops.
--  Implemented `flatten(list_of_lists)` using list comprehension.
--  Implemented `mean_of_file(path)` to calculate the average of numbers from a file.
--  Added exception handling for missing files using `try` and `except FileNotFoundError`.
--  Demonstrated the difference between a list comprehension and a generator expression.
--  Used the `if __name__ == "__main__":` block to demonstrate all functions.
+### Task 1 – Manual Word Count
+
+A function was implemented using a Python dictionary to count the occurrence of each word after:
+
+- Converting the text to lowercase.
+- Removing punctuation and special characters.
+- Splitting the cleaned text into words.
+- Counting each word manually using a dictionary.
 
 ---
 
-## ▶️ How to Run
+### Task 2 – Word Count Using `collections.Counter`
 
-1. Activate the virtual environment:
+The same problem was solved using Python's built-in `Counter` class from the `collections` module.
+
+The outputs of both implementations were compared to verify that they produce identical results.
+
+---
+
+### Task 3 – Flatten Nested Lists
+
+A nested list was flattened using two different approaches:
+
+- Traditional nested loops
+- List comprehension
+
+Both methods generated the same flattened list.
+
+---
+
+### Task 4 – Mean of Numbers in a File
+
+A function was implemented to:
+
+- Read numbers from a text file.
+- Convert each value into a floating-point number.
+- Calculate the arithmetic mean.
+- Ignore empty lines.
+- Handle missing files gracefully using `try` and `except FileNotFoundError`.
+
+---
+
+### Task 5 – List Comprehension vs Generator Expression
+
+The difference between List Comprehension and Generator Expression was explained.
+
+**List Comprehension**
+
+- Creates the complete list in memory.
+- Faster when all values are required.
+- Consumes more memory.
+
+**Generator Expression**
+
+- Generates one value at a time.
+- Memory efficient.
+- Suitable for large datasets.
+
+---
+
+## How to Run
+
+Activate the virtual environment:
 
 ```bash
 source venv/bin/activate
 ```
 
-2. Run the program:
+Run the program:
 
 ```bash
 python main.py
@@ -55,141 +104,43 @@ python main.py
 
 ---
 
----
+## Output
 
-## 💻 Solution
+### Word Count (Dictionary)
 
-### `main.py`
-
-```python
-import string
-from collections import Counter
-
-#       Task1----> Word count
-def word_count(text):
-   
-    text=text.lower()
-
-    clean=""
-
-    for ch in text:
-        if ch.isdigit() or ch.isalpha() or ch==" ":
-            clean+=ch
-    clean=clean.split()     #space remove krta h and convert it into the list
-    # print(clean)
-
-    dict={}
-    for word in clean:
-        if word in dict:
-            dict[word]+=1
-        else:
-            dict[word]=1
-    # print(dict)
-    return dict
-
-
-
-# Task2---->Using counter
-
-def word_count_counter(text):
-    text=text.lower()
-
-    clean=""
-
-    for ch in text:
-        if ch.isdigit() or ch.isalpha() or ch==" ":
-            clean+=ch
-    clean=clean.split()     
-
-    # print(dict(Counter(clean)))
-    return dict(Counter(clean))
-
-
-
-
-# Task3---->> 2D list to single list
-
-
-def flatten(list_of_lists):
-
-    ans = []
-
-    for listt in list_of_lists:
-        for i in listt:
-            ans.append(i)
-
-    # print(ans)
-    return ans
-
-
-
-# Task4 ----->2D to single list using Comprehension
-def flatten_comp(list_of_lists):
-   
-    return([i for listt in list_of_lists for i in listt])
-
-
-
-
-
-#task 5---->>> Finding the mean
-
-def mean_of_file(path):          
-    try:                         
-
-        file = open(path, "r")   # Open the file in read mode
-
-        numbers = []             
-
-        for line in file:        # read one line at a time
-            line = line.strip()  # Remove spaces and newline
-            if line != "":       # Ignore empty lines
-
-                numbers.append(float(line))     # Convert the line into a number and store it
-
-        file.close()             
-
-        if len(numbers) == 0:    #agar list empty h
-            return 0
-
-        return sum(numbers) / len(numbers)      # sum(numbers)adds all numbers
-
-    except FileNotFoundError:    # if the file doesn't exist
-        print("File not found.")
-        return None
-
-
-
-# Task 6----->> Differnce between List Comprehension and Generator 
-
-# List Comprehension:A List Comprehension is a shorter and cleaner way to create a list in Python.Instead of writing a loop and using append(), you can create the entire list in one line.
-
-# Creates the complete list in memory.
-# Faster when all elements are needed.
-
-
-
-# Generator Expression:A Generator Expression is similar to a List Comprehension, but instead of creating the entire list at once
-# Generates one value at a time.
-# Uses less memory and is better for very large data.
-
-
-if __name__ == "__main__":
-
-    print(word_count("Hello, hello World! 123"))
-
-    print(word_count_counter("Hello, hello World! 123"))
-
-    print(flatten([[2,5],[4,5,6],[7,8,9]]))
-
-    print(flatten_comp([[2,5],[4,5,6],[7,8,9]]))
-
-    print(mean_of_file("numbers.txt"))
+```text
+{'hello': 2, 'world': 1, '123': 1}
 ```
 
----
+### Word Count (Counter)
 
-## 📄 Input (`numbers.txt`)
+```text
+{'hello': 2, 'world': 1, '123': 1}
+```
+
+### Comparison
+
+```text
+Do both methods give same output?
+
+True
+```
+
+### Flatten Nested List
+
+```text
+[2, 5, 4, 5, 6, 7, 8, 9]
+```
+
+### Flatten Using List Comprehension
+
+```text
+[2, 5, 4, 5, 6, 7, 8, 9]
+```
+
+### Mean of Numbers in File
+
+For the following `numbers.txt`
 
 ```text
 10
@@ -200,35 +151,47 @@ if __name__ == "__main__":
 60
 ```
 
----
-
-## ▶️ Output
+Output
 
 ```text
-{'hello': 2, 'world': 1, '123': 1}
-{'hello': 2, 'world': 1, '123': 1}
-[2, 5, 4, 5, 6, 7, 8, 9]
-[2, 5, 4, 5, 6, 7, 8, 9]
 35.0
 ```
 
----
+If a file does not exist, the program prints:
 
-## 📸 Program Output
+```text
+File not found.
+```
 
-> Screenshot of the program execution:
-
-<img width="1532" height="180" alt="Screenshot 2026-08-05 215223" src="https://github.com/user-attachments/assets/a0255136-8baa-487b-b250-de50f236af49" />
-
-
-## ✅ Expected Output
-
-- Word count using dictionary
-- Word count using `Counter`
-- Verification that both outputs are equal (`True`)
-- Flattened list (loop and comprehension)
-- Mean of numbers in `numbers.txt`
-- Graceful handling of a missing file
-- Demonstration of list comprehension and generator expression
+without terminating unexpectedly.
 
 ---
+<<<<<<< HEAD
+=======
+
+## Program Output
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/7f587171-3bda-4a8e-b254-261efa96ffa5" alt="Program Output" width="900">
+</p>
+
+---
+
+## Concepts Covered
+
+- Functions
+- Dictionaries
+- `collections.Counter`
+- String manipulation
+- List comprehensions
+- Nested loops
+- File handling
+- Exception handling (`try`/`except`)
+- `if __name__ == "__main__"`
+
+---
+
+## Conclusion
+
+This lab demonstrated multiple Pythonic approaches for solving common programming problems. Manual implementations were compared with Python's built-in utilities such as `collections.Counter` and list comprehensions, highlighting improvements in readability and efficiency. The lab also reinforced file handling, exception handling, and writing modular, reusable functions.
+>>>>>>> 0d7756a (updated the Readme and added the dict comparison in main file)

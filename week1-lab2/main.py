@@ -111,10 +111,13 @@ def mean_of_file(path):
 
 
 if __name__ == "__main__":
+    text="Hello, hello World! 123"
+    print(word_count(text))
 
-    print(word_count("Hello, hello World! 123"))
+    print(word_count_counter(text))
 
-    print(word_count_counter("Hello, hello World! 123"))
+    print("\n Do both methods give same output? ")
+    print(word_count(text)==word_count_counter(text))
 
     print(flatten([[2,5],[4,5,6],[7,8,9]]))
 
