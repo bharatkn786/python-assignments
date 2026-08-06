@@ -79,9 +79,11 @@ def mean_of_file(path):
 
         for line in file:        # read one line at a time
             line = line.strip()  # Remove spaces and newline
-            if line != "":       # Ignore empty lines
-
-                numbers.append(float(line))     # Convert the line into a number and store it
+            if line != "":       # Ignore empty line
+                try:
+                    numbers.append(float(line)) # Convert the line into a number and store it
+                except ValueError:
+                    continue     
 
         file.close()             
 

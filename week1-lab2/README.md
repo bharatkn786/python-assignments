@@ -74,13 +74,13 @@ A function was implemented to:
 
 The difference between List Comprehension and Generator Expression was explained.
 
-**List Comprehension**
+#### List Comprehension
 
 - Creates the complete list in memory.
 - Faster when all values are required.
 - Consumes more memory.
 
-**Generator Expression**
+#### Generator Expression
 
 - Generates one value at a time.
 - Memory efficient.
@@ -88,15 +88,24 @@ The difference between List Comprehension and Generator Expression was explained
 
 ---
 
+---
+
+## `numbers.txt`
+
+<img width="542" height="434" alt="image" src="https://github.com/user-attachments/assets/51602e35-7202-4cae-853d-975d7814560d" />
+
+
+---
+
 ## How to Run
 
-Activate the virtual environment:
+### Activate the virtual environment
 
 ```bash
 source venv/bin/activate
 ```
 
-Run the program:
+### Run the program
 
 ```bash
 python main.py
@@ -104,7 +113,7 @@ python main.py
 
 ---
 
-## Output
+# Output
 
 ### Word Count (Dictionary)
 
@@ -140,24 +149,19 @@ True
 
 ### Mean of Numbers in File
 
-For the following `numbers.txt`
+Input (`numbers.txt`)
 
-```text
-10
-20
-30
-40
-50
-60
-```
+<img width="542" height="434" alt="image" src="https://github.com/user-attachments/assets/fd43fed0-1b29-4526-b27b-0b4ea8c6ec73" />
+
 
 Output
 
 ```text
 35.0
 ```
+> **Note:** If any invalid (non-numeric) values are present in `numbers.txt`, the program automatically skips them and calculates the mean using only the valid numeric values. Empty lines are also ignored.
 
-If a file does not exist, the program prints:
+If a missing file is provided, the program prints:
 
 ```text
 File not found.
@@ -166,18 +170,16 @@ File not found.
 without terminating unexpectedly.
 
 ---
-<<<<<<< HEAD
-=======
 
-## Program Output
+# Program Output
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/7f587171-3bda-4a8e-b254-261efa96ffa5" alt="Program Output" width="900">
+  <img src="https://github.com/user-attachments/assets/7f587171-3bda-4a8e-b254-261efa96ffa5" width="900" alt="Program Output">
 </p>
 
 ---
 
-## Concepts Covered
+# Concepts Covered
 
 - Functions
 - Dictionaries
@@ -186,12 +188,12 @@ without terminating unexpectedly.
 - List comprehensions
 - Nested loops
 - File handling
-- Exception handling (`try`/`except`)
+- Exception handling (`try` / `except`)
 - `if __name__ == "__main__"`
 
 ---
 
-## Conclusion
+# Conclusion
 
-This lab demonstrated multiple Pythonic approaches for solving common programming problems. Manual implementations were compared with Python's built-in utilities such as `collections.Counter` and list comprehensions, highlighting improvements in readability and efficiency. The lab also reinforced file handling, exception handling, and writing modular, reusable functions.
->>>>>>> 0d7756a (updated the Readme and added the dict comparison in main file)
+
+This lab demonstrated multiple Pythonic approaches for solving common programming problems. The manual dictionary implementation was compared with Python's built-in `collections.Counter`, showing that both produce identical results while `Counter` provides a cleaner implementation. The lab also reinforced list comprehensions, file handling, exception handling, and writing modular, reusable Python functions.
