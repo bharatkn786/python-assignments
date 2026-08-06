@@ -36,7 +36,7 @@ python-assignments/
 |------------|----------------------------|--------|
 | [Assignment-0](./Assignment-0/) | Python Version Management | ✅ Completed |
 | [week1-lab1](./week1-lab1/) | Project and Environment Setup | ✅ Completed |
-| Assignment-2 | Coming Soon | ⏳ |
+| [week1-lab2](week1-lab2) | Python Fluency Practice | ✅ Completed |
 | Assignment-3 | Coming Soon | ⏳ |
 
 ---
