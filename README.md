@@ -32,6 +32,14 @@ python-assignment/
 │   ├── requirements.txt
 │   └── .gitignore
 │
+├── week1-lab3/
+│   ├── venv/
+│   ├── main.py
+│   ├── numbers.txt
+│   ├── README.md
+│   ├── requirements.txt
+│   └── .gitignore
+│
 └── Assignment-3/
 ```
 
@@ -43,7 +51,8 @@ python-assignment/
 | [Assignment-0](./Assignment-0/) | Python Version Management | ✅ Completed |
 | [week1-lab1](./week1-lab1/) | Project and Environment Setup | ✅ Completed |
 | [week1-lab2](week1-lab2) | Python Fluency Practice | ✅ Completed |
-| Assignment-3 | Coming Soon | ⏳ |
+| [week1-lab3](week1-lab3) | Python Fluency Practice | ✅ Completed |
+| Assignment-4 | Coming Soon | ⏳ |
 
 ---
 
