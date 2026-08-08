@@ -58,6 +58,16 @@ def flatten(list_of_lists):
     return ans
 
 
+
+# Task4 ----->2D to single list using Comprehension
+def flatten_comp(list_of_lists):
+    # print([i for lst in list_of_lists for i in lst])
+    return([i for listt in list_of_lists for i in listt])
+
+
+
+
+
 if __name__ == "__main__":
     text="Hello, hello World! 123"
     print(word_count(text))
@@ -69,4 +79,6 @@ if __name__ == "__main__":
 
     print(flatten([[2,5],[4,5,6],[7,8,9]]))
 
+    print(flatten_comp([[2,5],[4,5,6],[7,8,9]]))
 
+  
