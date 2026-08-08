@@ -43,6 +43,19 @@ def word_count_counter(text):
 
 
 
+# Task3---->> 2D list to single list
+
+
+def flatten(list_of_lists):
+
+    ans = []
+
+    for listt in list_of_lists:
+        for i in listt:
+            ans.append(i)
+
+    # print(ans)
+    return ans
 
 
 if __name__ == "__main__":
@@ -53,3 +66,7 @@ if __name__ == "__main__":
 
     print("\n Do both methods give same output? ")
     print(word_count(text)==word_count_counter(text))
+
+    print(flatten([[2,5],[4,5,6],[7,8,9]]))
+
+
