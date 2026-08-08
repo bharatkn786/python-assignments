@@ -78,3 +78,11 @@ The reviewer requested that Pull Request screenshots be added to the README.
 
 
 ---
+
+
+### 5. Final Merge
+
+After addressing the review feedback, the Pull Request was merged into `main`.
+
+<img width="1184" height="379" alt="Screenshot 2026-08-08 190126" src="https://github.com/user-attachments/assets/d70f3514-84cf-4155-b819-11782cda84e2" />
+
