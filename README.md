@@ -1,6 +1,6 @@
 # 🐍 Python Assignments
 
-This repository contains my Python assignments completed as part of my learning journey. Each assignment is organized in its own folder with source code, documentation, and supporting files.
+This repository contains my Python assignments completed as part of my learning journey. Each assignment focuses on developing practical programming skills, problem-solving abilities, Python fundamentals, and command-line workflows.
 
 ---
 
@@ -33,109 +33,125 @@ python-assignment/
 │   └── .gitignore
 │
 ├── week1-lab3/
-│   ├── venv/
-│   ├── main.py
-│   ├── numbers.txt
 │   ├── README.md
-│   ├── requirements.txt
 │   └── .gitignore
 │
-└── Assignment-3/
+└── week1-lab4/
+    ├── main.sh
+    ├── sample.txt
+    ├── test.txt
+    ├── README.md
+    └── .gitignore
 ```
 
+---
 
 ## 📋 Assignments
 
 | Assignment | Topic | Status |
-|------------|----------------------------|--------|
-| [Assignment-0](./Assignment-0/) | Python Version Management | ✅ Completed |
-| [week1-lab1](./week1-lab1/) | Project and Environment Setup | ✅ Completed |
-| [week1-lab2](week1-lab2) | Python Fluency Practice | ✅ Completed |
-| [week1-lab3](week1-lab3) | Python Fluency Practice | ✅ Completed |
-| Assignment-4 | Coming Soon | ⏳ |
+|---|---|---|
+| [Assignment-0](https://github.com/bharatkn786/python-assignments/blob/main/Assignment-0) | Python Version Management | ✅ Completed |
+| [week1-lab1](https://github.com/bharatkn786/python-assignments/blob/main/week1-lab1) | Project and Environment Setup | ✅ Completed |
+| [week1-lab2](https://github.com/bharatkn786/python-assignments/blob/main/week1-lab2) | Python Fluency Practice | ✅ Completed |
+| [week1-lab3](https://github.com/bharatkn786/python-assignments/blob/main/week1-lab3) | Git and GitHub Workflow | ✅ Completed |
+| [week1-lab4](https://github.com/bharatkn786/python-assignments/blob/main/week1-lab4) | Command Line and Bash | ✅ Completed |
+| Assignment-5 | Coming Soon | ⏳ |
 
 ---
 
-## 🎯 Objective
+## 🛠️ Skills and Concepts Covered
 
-The objective of this repository is to:
+Through these assignments, I have practiced:
 
-- Practice Python programming concepts.
-- Maintain a structured collection of assignments.
-- Learn Python through hands-on implementation.
-- Track learning progress using Git and GitHub.
-- Document each assignment with its own README.
-
----
-
-## 🛠️ Technologies Used
-
-- Python
-- Git
-- GitHub
-- Visual Studio Code
-- Windows PowerShell
-- Ubuntu (WSL)
-
----
-
-# 🚀 Git Workflow
-
-## Initial Repository Setup (Run Once)
-
-```bash
-# Navigate to the repository
-cd /mnt/c/Users/nagpa/OneDrive/Desktop/python-assignments
-
-# Initialize Git
-git init
-
-# Rename the default branch
-git branch -M main
-
-# Add the remote repository
-git remote add origin https://github.com/bharatkn786/python-assignments.git
-
-# Check repository status
-git status
-
-# Stage all files
-git add .
-
-# Create the first commit
-git commit -m "Add Assignment 0 - Python Version Management"
-
-# Push to GitHub
-git push -u origin main
-```
+- Python fundamentals
+- Functions
+- Dictionaries
+- `collections.Counter`
+- List comprehensions
+- File handling
+- Exception handling
+- Virtual environments
+- Git and GitHub
+- Feature branches
+- Pull requests
+- Code reviews
+- Linux command line
+- Bash scripting
+- `curl`
+- `tr`
+- `sort`
+- `uniq`
+- `head`
+- `wc`
+- Pipes and input redirection
 
 ---
 
-## Adding a New Assignment
+## 📚 Labs Completed
 
-```bash
-# Navigate to the repository
-cd /mnt/c/Users/nagpa/OneDrive/Desktop/python-assignments
+### Week 1 - Lab 1
 
-# Create a new assignment folder
-mkdir Assignment-1
+**Project and Environment Setup**
 
-# Add your source code and README
+Covered:
 
-# Stage changes
-git add .
+- Python project setup
+- Virtual environments
+- Package management
+- Basic Git workflow
 
-# Commit changes
-git commit -m "Add Assignment 1"
+### Week 1 - Lab 2
 
-# Push to GitHub
-git push
-```
+**Python Fluency Practice**
+
+Covered:
+
+- Manual word counting
+- `collections.Counter`
+- Flattening nested lists
+- List comprehensions
+- File handling
+- Calculating the mean
+- Exception handling
+- Generator expressions
+
+### Week 1 - Lab 3
+
+**Git and GitHub Workflow**
+
+Covered:
+
+- Feature branches
+- Multiple commits
+- Pull requests
+- Code reviews
+- Handling review feedback
+- Follow-up commits
+- Merging changes
+
+### Week 1 - Lab 4
+
+**Command Line and Bash**
+
+Covered:
+
+- Linux command-line basics
+- Downloading files using `curl`
+- File processing
+- Word frequency analysis
+- Bash scripting
+- Pipes
+- Input redirection
+- Command-line arguments
+- `chmod`
+- `tr`
+- `sort`
+- `uniq`
+- `head`
+- `wc`
 
 ---
 
-## 👨‍💻 Author
+## 🚀 Goal
 
-**Bharat Kumar**
-
-GitHub: https://github.com/bharatkn786
+The goal of this repository is to continuously improve my programming fundamentals, problem-solving skills, Git/GitHub workflow, and practical development skills through hands-on assignments and projects.
