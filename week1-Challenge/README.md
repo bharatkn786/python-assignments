@@ -628,11 +628,96 @@ Everything else → text
 This makes the implementation easy to understand while still demonstrating practical data profiling concepts.
 
 ---
+# Part B: SQL Sales Analysis
 
-# SQL Analysis
+## Overview
 
-The project also contains a `sql/` directory containing four Chinook business queries.
+The second half of this assignment answers four business questions against the **Chinook** sample database using SQL, run via `sqlite3`.
 
-Each query is stored in its own `.sql` file and has an accompanying business insight explaining the result.
+Each query is stored in its own `.sql` file under the `sql/` directory and is paired with a short business insight.
 
-The SQL analysis is separate from the CSV profiling functionality but is included as part of the overall assignment.
+---
+
+## Query 1: Top 5 Customers by Total Spending
+
+**File:** `sql/top_customers.sql`
+
+```sql
+
+SELECT Customer.CustomerId, Customer.FirstName || ' ' || Customer.LastName AS CustomerName, 
+SUM(Invoice.Total) AS TotalSpend
+FROM Customer
+JOIN Invoice
+ON Customer.CustomerId = Invoice.CustomerId
+GROUP BY Customer.CustomerId
+ORDER BY TotalSpend DESC
+LIMIT 5;
+```
+Output:
+<img width="1232" height="111" alt="Screenshot 2026-08-11 002842" src="https://github.com/user-attachments/assets/c7161389-dc3a-4edc-99aa-cd73381bf7d1" />
+
+
+---
+
+## Query 2: Revenue by Country
+
+**File:** `ssql/revenue_by_country.sql`
+
+```sql
+
+SELECT Country, SUM(Total) AS Revenue
+FROM Customer
+JOIN Invoice
+ON Customer.CustomerId = Invoice.CustomerId
+GROUP BY Country
+ORDER BY Revenue DESC;
+```
+Output:
+<img width="1241" height="462" alt="Screenshot 2026-08-11 003010" src="https://github.com/user-attachments/assets/5353c588-522f-4c74-b579-8e8e3a5e64df" />
+
+
+
+
+---
+
+## Query 3:Best_selling_tracks
+
+**File:** `sql/best_selling_tracks.sql`
+
+```sql
+
+SELECT Track.TrackId, Track.Name, SUM(InvoiceLine.Quantity) AS Quantity
+FROM InvoiceLine
+JOIN Track
+ON InvoiceLine.TrackId = Track.TrackId
+GROUP BY Track.TrackId, Track.Name
+ORDER BY Quantity DESC
+LIMIT 10;
+```
+Output:
+<img width="1176" height="200" alt="Screenshot 2026-08-11 002905" src="https://github.com/user-attachments/assets/efcb4de4-8515-4e90-b386-029b9ca6591f" />
+
+
+## Query 4:monthly_revenue_2010
+
+**File:** `sql/monthly_revenue_2010.sql`
+
+```sql
+
+-- Shows revenue for each month in 2010.
+SELECT strftime('%m', InvoiceDate) AS Month,
+SUM(Total) AS Revenue
+FROM Invoice
+WHERE InvoiceDate LIKE '2010%'
+GROUP BY Month;
+```
+Output:
+<img width="1139" height="234" alt="Screenshot 2026-08-11 002920" src="https://github.com/user-attachments/assets/ce7a4518-6a89-4d6d-bcde-c1f31e3b6a9d" />
+
+# Conclusion
+
+This project provided practical experience in both data profiling and SQL-based business analysis. In Part A, the `csvstat` command-line tool was developed using Python, Pandas, and `argparse` to inspect CSV files, identify column types, detect missing values, calculate numeric statistics, and display frequent text values. The tool also includes simple error handling for missing files and supports the optional `--top N` argument.
+
+In Part B, four SQL queries were created using the Chinook database to answer real-world business questions related to customer spending, revenue by country, best-selling tracks, and monthly revenue. The analysis demonstrated the use of `JOIN`, `GROUP BY`, aggregate functions, `ORDER BY`, `LIMIT`, and date-based filtering. The queries were tested using SQLite and the results were documented with business insights.
+
+Overall, the assignment strengthened practical skills in **Python, Pandas, command-line tools, SQL, SQLite, data analysis, error handling, and Git-based project organization**. It also demonstrated how raw data can be transformed into useful information for understanding business performance and supporting data-driven decisions.
