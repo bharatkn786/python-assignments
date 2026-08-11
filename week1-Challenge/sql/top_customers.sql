@@ -1,4 +1,4 @@
--- The highest-ranked countries generate the most revenue.
+-- Finding the top Customers
 SELECT Customer.CustomerId, Customer.FirstName || ' ' || Customer.LastName AS CustomerName, 
 SUM(Invoice.Total) AS TotalSpend
 FROM Customer
