@@ -36,27 +36,38 @@ python-assignment/
 │   ├── README.md
 │   └── .gitignore
 │
-└── week1-lab4/
-    ├── main.sh
-    ├── sample.txt
-    ├── test.txt
+├── week1-lab4/
+│   ├── main.sh
+│   ├── sample.txt
+│   ├── test.txt
+│   ├── README.md
+│   └── .gitignore
+│
+└── week1-challenge/
     ├── README.md
-    └── .gitignore
+    ├── requirements.txt
+    ├── .gitignore
+    ├── csvstat.py
+    ├── data.csv
+    └── sql/
+        ├── top_customers.sql
+        ├── revenue_by_country.sql
+        ├── best_selling_tracks.sql
+        └── monthly_revenue_2010.sql
 ```
 
 ---
 
 ## 📋 Assignments
 
-| Assignment | Topic | Status |
+| **Assignment** | **Topic** | **Status** |
 |---|---|---|
 | [Assignment-0](https://github.com/bharatkn786/python-assignments/blob/main/Assignment-0) | Python Version Management | ✅ Completed |
 | [week1-lab1](https://github.com/bharatkn786/python-assignments/blob/main/week1-lab1) | Project and Environment Setup | ✅ Completed |
 | [week1-lab2](https://github.com/bharatkn786/python-assignments/blob/main/week1-lab2) | Python Fluency Practice | ✅ Completed |
 | [week1-lab3](https://github.com/bharatkn786/python-assignments/blob/main/week1-lab3) | Git and GitHub Workflow | ✅ Completed |
 | [week1-lab4](https://github.com/bharatkn786/python-assignments/blob/main/week1-lab4) | Command Line and Bash | ✅ Completed |
-| Assignment-5 | Coming Soon | ⏳ |
-
+| [week1-challenge](https://github.com/bharatkn786/python-assignments/tree/main/week1-challenge) | CSV Data Profiling and SQL Sales Analysis | ✅ Completed |
 ---
 
 ## 🛠️ Skills and Concepts Covered
