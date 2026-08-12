@@ -73,7 +73,7 @@ The second part of the assignment required answering four business questions usi
 ## Project Structure
 
 ```text
-week1-foundations/
+week1-Challenge/
 │
 ├── README.md
 ├── requirements.txt
@@ -661,7 +661,7 @@ Output:
 
 ## Query 2: Revenue by Country
 
-**File:** `ssql/revenue_by_country.sql`
+**File:** `sql/revenue_by_country.sql`
 
 ```sql
 
@@ -700,7 +700,7 @@ Output:
 
 ## Query 4:monthly_revenue_2010
 
-**File:** `sql/monthly_revenue_2010.sql`
+**File:** `sql/monthly_revenue.sql`
 
 ```sql
 
