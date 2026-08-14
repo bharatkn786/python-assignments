@@ -1,0 +1,49 @@
+   id    name  age        city  salary
+0   1  Bharat   21       Hisar   45000
+1   2   Rahul   22       Delhi   50000
+2   3   Priya   23  Chandigarh   55000
+3   4   Ankit   21      Jaipur   48000
+4   5    Neha   24      Mumbai   60000
+5   6    Aman   22       Delhi   52000
+6   7  Simran   23  Chandigarh   58000
+7   8   Rohit   25        Pune   65000
+8   9   Pooja   21       Hisar   47000
+9  10   Arjun   24     Gurgaon   62000
+rows:10
+columns:5
+
+ Missing: 0,Missing in which Column: id,
+  Missing Percentage: 0.0%
+  Min: 1
+  Mean: 5.50
+  Max: 10
+
+ Missing: 0,Missing in which Column: name,
+  Missing Percentage: 0.0%
+  Top values:
+Bharat: 1
+Rahul: 1
+Priya: 1
+Ankit: 1
+Neha: 1
+
+ Missing: 0,Missing in which Column: age,
+  Missing Percentage: 0.0%
+  Min: 21
+  Mean: 22.60
+  Max: 25
+
+ Missing: 0,Missing in which Column: city,
+  Missing Percentage: 0.0%
+  Top values:
+Hisar: 2
+Delhi: 2
+Chandigarh: 2
+Jaipur: 1
+Mumbai: 1
+
+ Missing: 0,Missing in which Column: salary,
+  Missing Percentage: 0.0%
+  Min: 45000
+  Mean: 54200.00
+  Max: 65000
