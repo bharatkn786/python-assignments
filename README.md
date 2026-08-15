@@ -1,252 +1,239 @@
-# 🐍 Python Assignments
+# CSV Stat Profiler — S3 + EC2
 
-This repository contains my Python assignments completed as part of my learning journey. Each assignment focuses on developing practical programming skills, problem-solving abilities, Python fundamentals, and command-line workflows.
+A CSV profiling tool that runs on an EC2 instance, reads its input CSV directly from an S3 bucket, and writes a profiling report back to S3 — using an IAM instance profile for authentication (no access keys stored on the instance).
 
----
 
-## 📂 Repository Structure
+## Overview
 
-```text
-python-assignment/
-│
-├── README.md
-│
-├── Assignment-0/
-│   ├── main.py
-│   ├── README.md
-│   ├── .gitignore
-│   └── screenshots/
-│
-├── week1-lab1/
-│   ├── .venv/
-│   ├── main.py
-│   ├── README.md
-│   ├── requirements.txt
-│   └── .gitignore
-│
-├── week1-lab2/
-│   ├── .venv/
-│   ├── main.py
-│   ├── numbers.txt
-│   ├── README.md
-│   ├── requirements.txt
-│   └── .gitignore
-│
-├── week1-lab3/
-│   ├── README.md
-│   └── .gitignore
-│
-├── week1-lab4/
-│   ├── main.sh
-│   ├── sample.txt
-│   ├── test.txt
-│   ├── README.md
-│   └── .gitignore
-│
-├── week1-Challenge/
-│   ├── README.md
-│   ├── requirements.txt
-│   ├── .gitignore
-│   ├── csvstat.py
-│   ├── data.csv
-│   └── sql/
-│       ├── top_customers.sql
-│       ├── revenue_by_country.sql
-│       ├── best_selling_tracks.sql
-│       └── monthly_revenue_2010.sql
-│
-├── week1-lab5/
-│   ├── README.md
-│   ├── Chinook.sqlite
-│   └── sql/
-│
-└── Week-2_Data/
-    ├── .gitignore
-    ├── data/
-    │   └── WineQT (3).csv
-    └── assesments/
-        ├── aws/
-        │   ├── README.md
-        │   ├── csvstat.py
-        │   ├── requirements.txt
-        │   ├── input/
-        │   └── output/
-        └── notebooks/
-            └── 01_Eda.ipynb
+`csvstat.py` runs with no arguments and automatically takes its input straight from the S3 bucket — you don't pass a filename or path. On each run, it:
+
+1. Automatically finds the CSV file sitting in `s3://<bucket>/input/`
+2. Reads it directly from S3 using `pandas` + `s3fs`
+3. Profiles every column — row/column counts, missing values, min/mean/max for numeric columns, top values for text columns, and flags date columns
+4. Prints the report to the terminal
+5. Uploads the same report as a timestamped `.txt` file to `s3://<bucket>/output/`
+
+> **Note:** No manual input is required — the script automatically pulls the CSV from `s3://<bucket>/input/` on every run. Just keep one CSV file in that folder and run `python csvstat.py`.
+
+## Architecture
+
+```
+S3 bucket (input/)  --reads CSV-->  EC2 instance (IAM instance profile attached)  --writes report-->  S3 bucket (output/)
 ```
 
----
+## Prerequisites
 
-## 📋 Assignments
+- An EC2 instance (Amazon Linux 2023 or similar) with SSH access
+- An S3 bucket with `input/` and `output/` folders
+- An IAM role with scoped S3 permissions, attached to the EC2 instance as an instance profile
+- Git installed on the instance
+- Python 3.9+ available on the instance
 
-| **Assignment** | **Topic** | **Status** |
+
+
+S## 1. Clone the Repository
+
+SSH into your EC2 instance:
+
+<img width="1189" height="243" alt="Screenshot 2026-08-15 111759" src="https://github.com/user-attachments/assets/b0ef84eb-7b33-41b4-94ab-364484c44fc6" />
+
+
+Then clone the repository:
+
+```bash
+git clone https://github.com/bharatkn786/python-assignments.git
+cd python-assignments
+```
+
+## 2. Create a Virtual Environment and Install Dependencies
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+`requirements.txt` contains:
+
+```
+pandas
+boto3
+s3fs
+```
+
+> **Note:** Install all dependencies in a single `pip install` command (or from `requirements.txt`) rather than separate commands. Installing `boto3` and `s3fs` separately can cause `botocore` version conflicts, since `s3fs` depends on `aiobotocore`, which pins a different `botocore` range than `boto3` does. A single combined install lets pip's resolver pick compatible versions for everything at once.
+
+## 3. Create the S3 Bucket and Folders
+
+From your local machine or the EC2 instance (using credentials with sufficient permissions):
+
+```bash
+aws s3 mb s3://bharat-csvstat --region ap-south-1
+aws s3api put-object --bucket bharat-csvstat --key input/
+aws s3api put-object --bucket bharat-csvstat --key output/
+```
+<img width="1916" height="678" alt="Screenshot 2026-08-15 111927" src="https://github.com/user-attachments/assets/c91c1beb-2e70-4a01-a336-a4cc88604f19" />
+
+Upload a sample CSV to the `input/` folder:
+
+```bash
+aws s3 cp sample_data.csv s3://bharat-csvstat/input/
+```
+
+> Keep only **one** CSV file in `input/` at a time — the script automatically picks up the first `.csv` file it finds there.
+
+## 4. Set Up the IAM Instance Profile
+
+### Create a scoped IAM policy
+
+In the IAM console, create a policy that grants only the permissions needed — no broader access:
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "s3:ListBucket",
+      "Resource": "arn:aws:s3:::bharat-csvstat"
+    },
+    {
+      "Effect": "Allow",
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::bharat-csvstat/input/*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": "s3:PutObject",
+      "Resource": "arn:aws:s3:::bharat-csvstat/output/*"
+    }
+  ]
+}
+```
+<img width="1908" height="672" alt="Screenshot 2026-08-15 112429" src="https://github.com/user-attachments/assets/e654d09c-2387-4c15-ba0c-86eb17936795" />
+
+
+### Create the IAM role
+
+1. IAM → Roles → Create Role
+2. Trusted entity: **EC2**
+3. Attach the policy created above
+4. Name the role (e.g. `CSVStatEC2Role`)
+
+### Attach the role to the EC2 instance
+
+1. EC2 Console → select the instance
+2. Actions → Security → Modify IAM role
+3. Select `CSVStatEC2Role` and save
+
+No access keys are ever entered on the instance. Verify the role is active:
+
+```bash
+aws sts get-caller-identity
+```
+
+
+Expected output shows an **assumed-role** ARN, not an IAM user:
+
+<img width="746" height="112" alt="Screenshot 2026-08-15 112540" src="https://github.com/user-attachments/assets/32979fb3-7913-4348-8dbd-c4c78ac43255" />
+
+
+
+> If any `~/.aws/credentials` file exists on the instance with hardcoded keys, remove or rename it so the SDK falls back to the instance role:
+> ```bash
+> mv ~/.aws/credentials ~/.aws/credentials.backup
+> ```
+
+## 5. Configure the Bucket Name in the Script
+
+Open `csvstat.py` and set the bucket name at the top:
+
+```python
+BUCKET = "bharat-csvstat"   # your S3 bucket name
+TOP = 5                      # number of top values shown for text columns
+```
+
+## 6. Run the Script
+
+```bash
+source venv/bin/activate
+python csvstat.py
+```
+
+The script requires no arguments — it automatically finds the CSV in `input/`, profiles it, prints the report, and uploads it to `output/`.
+
+Example output:
+
+<img width="490" height="884" alt="image" src="https://github.com/user-attachments/assets/5071231a-32ed-41d4-9c31-1924b8b0ca1a" />
+
+Report uploaded to s3://bharat-csvstat/output/report_sample_data.csv_20260814_205807.txt
+```
+
+## 7. Verify the Report
+
+```bash
+aws s3 ls s3://bharat-csvstat/output/
+```
+
+You should see a new `report_<filename>_<timestamp>.txt` file for each run.
+
+## What the Script Does — Column by Column
+
+For every column in the CSV:
+
+| Column type | Detection | Stats reported |
 |---|---|---|
-| [Assignment-0](https://github.com/bharatkn786/python-assignments/blob/main/Assignment-0) | Python Version Management | ✅ Completed |
-| [week1-lab1](https://github.com/bharatkn786/python-assignments/blob/main/week1-lab1) | Project and Environment Setup | ✅ Completed |
-| [week1-lab2](https://github.com/bharatkn786/python-assignments/blob/main/week1-lab2) | Python Fluency Practice | ✅ Completed |
-| [week1-lab3](https://github.com/bharatkn786/python-assignments/blob/main/week1-lab3) | Git and GitHub Workflow | ✅ Completed |
-| [week1-lab4](https://github.com/bharatkn786/python-assignments/blob/main/week1-lab4) | Command Line and Bash | ✅ Completed |
-| [week1-Challenge](https://github.com/bharatkn786/python-assignments/tree/main/week1-Challenge) | CSV Data Profiling and SQL Sales Analysis | ✅ Completed |
-| [week1-lab5](https://github.com/bharatkn786/python-assignments/tree/main/week1-lab5) | SQL Fundamentals with Chinook Database | ✅ Completed |
-| [Week-2_Data / aws](https://github.com/bharatkn786/python-assignments/tree/main/Week-2_Data/assesments/aws) | CSV Profiling on AWS (EC2 + S3 + IAM) | ✅ Completed |
-| [Week-2_Data / notebooks](https://github.com/bharatkn786/python-assignments/tree/main/Week-2_Data/assesments/notebooks) | Exploratory Data Analysis (Wine Quality Dataset) | in progress |
+| Numeric | `pandas` numeric dtype | Min, Mean, Max |
+| Date | Column name contains `"date"` | Flagged as a date column |
+| Text | Anything else | Top 5 most frequent values (configurable via `TOP`) |
 
----
+Every column also reports its missing-value count and missing-value percentage.
 
-## 🛠️ Skills and Concepts Covered
+## Troubleshooting
 
-Through these assignments, I have practiced:
+### `AccessDenied` on `s3:ListAllMyBuckets` or `s3:DeleteObject`
 
-- Python fundamentals
-- Functions
-- Dictionaries
-- `collections.Counter`
-- List comprehensions
-- File handling
-- Exception handling
-- Virtual environments
-- Git and GitHub
-- Feature branches
-- Pull requests
-- Code reviews
-- Linux command line
-- Bash scripting
-- `curl`
-- `tr`
-- `sort`
-- `uniq`
-- `head`
-- `wc`
-- Pipes and input redirection
-- SQL fundamentals (`SELECT`, `WHERE`, `JOIN`, `GROUP BY`, aggregates, date functions)
-- AWS EC2 and S3 basics
-- IAM instance profiles and scoped IAM policies (no hardcoded access keys)
-- Reading/writing data to S3 with `boto3` and `s3fs`
-- Exploratory Data Analysis (EDA) with `pandas`, `matplotlib`, and `seaborn`
-- Data quality checks (missing values, duplicates)
-- Distribution analysis, box plots, and correlation analysis
+This is expected behavior, not a bug. The IAM policy above only grants `GetObject`, `PutObject`, and `ListBucket` — nothing broader. If you need to delete an object from `input/` or `output/`, do it from a machine using a full-permission identity (e.g. your local AWS CLI with an IAM user), not from the EC2 instance itself.
 
----
+### `No CSV file found in input/ folder`
 
-## 📚 Labs Completed
+Confirm exactly one `.csv` file is present:
 
-### Week 1 - Lab 1
+```bash
+aws s3 ls s3://bharat-csvstat/input/
+```
 
-**Project and Environment Setup**
+### `pip` dependency conflicts between `boto3`, `botocore`, and `s3fs`
 
-Covered:
+Always install `pandas`, `boto3`, and `s3fs` together in one command (or via `requirements.txt`), never in separate `pip install` calls. If a conflict already occurred, rebuild the virtual environment from scratch:
 
-- Python project setup
-- Virtual environments
-- Package management
-- Basic Git workflow
+```bash
+deactivate
+rm -rf venv
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+pip check
+```
 
-### Week 1 - Lab 2
+`pip check` should print no output if all dependencies are compatible.
 
-**Python Fluency Practice**
+## Project Structure
 
-Covered:
+```
+week1-Challenge/
+│
+├── venv/
+├── csvstat.py
+├── requirements.txt
+├── data.csv
+├── sql/
+└── README.md
+```
 
-- Manual word counting
-- `collections.Counter`
-- Flattening nested lists
-- List comprehensions
-- File handling
-- Calculating the mean
-- Exception handling
-- Generator expressions
+## Security Notes
 
-### Week 1 - Lab 3
-
-**Git and GitHub Workflow**
-
-Covered:
-
-- Feature branches
-- Multiple commits
-- Pull requests
-- Code reviews
-- Handling review feedback
-- Follow-up commits
-- Merging changes
-
-### Week 1 - Lab 4
-
-**Command Line and Bash**
-
-Covered:
-
-- Linux command-line basics
-- Downloading files using `curl`
-- File processing
-- Word frequency analysis
-- Bash scripting
-- Pipes
-- Input redirection
-- Command-line arguments
-- `chmod`
-- `tr`
-- `sort`
-- `uniq`
-- `head`
-- `wc`
-
-### Week 1 - Challenge
-
-**CSV Data Profiling and SQL Sales Analysis**
-
-Covered:
-
-- Building a command-line CSV profiling tool (`csvstat.py`)
-- Row/column counts, missing values, min/mean/max, and top values per column
-- SQL business analysis queries against the Chinook database
-- Structured pull request delivery and code review workflow
-
-### Week 1 - Lab 5
-
-**SQL Fundamentals**
-
-Covered:
-
-- Querying relational data with the Chinook SQLite database
-- Filtering, sorting, and limiting results
-- Aggregate functions and `GROUP BY`
-- Table joins
-- Date-based queries
-
----
-
-## 📚 Week 2
-
-### Week 2 - CSV Profiling on AWS (EC2 + S3 + IAM)
-
-A CSV profiling tool deployed on an EC2 instance that reads its input CSV directly from an S3 bucket and writes the profiling report back to S3, authenticated entirely through an IAM instance profile (no access keys stored on the instance).
-
-Covered:
-
-- Launching and connecting to an EC2 instance
-- Creating and structuring an S3 bucket (`input/` and `output/` folders)
-- Reading/writing CSVs directly from S3 using `pandas`, `boto3`, and `s3fs`
-- Writing a scoped IAM policy (`GetObject`, `PutObject`, `ListBucket` only) and attaching it via an IAM role
-- Verifying instance-role authentication with `aws sts get-caller-identity`
-- Troubleshooting `pip` dependency conflicts between `boto3`, `botocore`, and `s3fs`
-
-### Week 2 - Exploratory Data Analysis (Wine Quality Dataset)
-
-An EDA notebook analyzing the Wine Quality dataset (`WineQT.csv`) to understand feature distributions and their relationship with wine quality.
-
-Covered:
-
-- Data loading and shape/summary statistics
-- Data quality checks (missing values, duplicate rows)
-- Distribution analysis of numerical features via histograms
-- Box plots to identify outliers and compare alcohol content across quality scores
-- Correlation analysis between features and wine quality
-- Scatter plot analysis of alcohol vs. quality
-- Key findings: alcohol content shows the strongest positive correlation with wine quality (~0.48); the dataset has 1,143 observations, 13 columns, no missing values, and no duplicates
-
----
-
-## 🚀 Goal
-
-The goal of this repository is to continuously improve my programming fundamentals, problem-solving skills, Git/GitHub workflow, and practical development skills through hands-on assignments and projects.
+- No AWS access keys are stored on the EC2 instance; all access is via the IAM instance profile.
+- The IAM policy is scoped to a single bucket and only the three actions required (`GetObject`, `PutObject`, `ListBucket`).
+- Never commit AWS access keys or secret keys to this repository.
