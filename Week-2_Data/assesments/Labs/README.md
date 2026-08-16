@@ -1,6 +1,6 @@
 # 📚 Labs
 
-This folder contains the Week 2 lab notebooks focused on data processing, numerical computation, and data cleaning using Python's core data science libraries.
+This folder contains the Week 2 lab notebooks focused on data processing, numerical computation, data cleaning, statistics, and visualization using Python's core data science libraries.
 
 ## 📂 Folder Structure
 
@@ -15,17 +15,25 @@ Labs/
 ├── lab-02-numpy-vectorization/
 │   └── 02-numpy-vectorization.ipynb
 │
-└── lab-03-data-cleaning/
-    └── 03-data-cleaning.ipynb
+├── lab-03-data-cleaning/
+│   └── 03-data-cleaning.ipynb
+│
+├── lab-04-statistics-intution/
+│   └── 04-statistics-intution.ipynb
+│
+└── lab05-visualization-mini-EDA/
+    └── 05-visualization-mini-eda.ipynb
 ```
 
 ## 📋 Labs Completed
 
-| Lab                                                        | Topic                                                          | Status         |
-| ---------------------------------------------------------- | -------------------------------------------------------------- | -------------- |
-| [lab-01-pandas-fundamentals](./lab-01-pandas-fundamentals) | Pandas Fundamentals (DataFrames, filtering, grouping, merging) | ✅ Completed    |
-| [lab-02-numpy-vectorization](./lab-02-numpy-vectorization) | NumPy and Vectorization                                        | ✅ Completed    |
-| [lab-03-data-cleaning](./lab-03-data-cleaning)             | Data Cleaning and Data Quality                                 | ✅ Completed |
+| Lab                                                            | Topic                                                          | Status      |
+| -------------------------------------------------------------- | -------------------------------------------------------------- | ----------- |
+| [lab-01-pandas-fundamentals](./lab-01-pandas-fundamentals)     | Pandas Fundamentals (DataFrames, filtering, grouping, merging) | ✅ Completed |
+| [lab-02-numpy-vectorization](./lab-02-numpy-vectorization)     | NumPy and Vectorization                                        | ✅ Completed |
+| [lab-03-data-cleaning](./lab-03-data-cleaning)                 | Data Cleaning and Data Quality                                 | ✅ Completed |
+| [lab-04-statistics-intution](./lab-04-statistics-intution)     | Statistics Intuition and Hypothesis Testing                    | ✅ Completed |
+| [lab05-visualization-mini-EDA](./lab05-visualization-mini-EDA) | Data Visualization and Mini EDA                                | ✅ Completed |
 
 ---
 
@@ -88,10 +96,54 @@ Covered:
 
 ---
 
+## Lab 4: Statistics Intuition
+
+Developing an intuitive understanding of statistical measures and using them to reason about the **Wine Quality dataset**.
+
+Covered:
+
+* Calculating mean, median, standard deviation, and percentiles
+* Comparing mean and median to understand the distribution
+* Plotting the alcohol distribution using a histogram
+* Calculating skewness and identifying right-skewed data
+* Detecting potential outliers using the IQR method
+* Visualizing outliers with a boxplot
+* Computing and interpreting a correlation matrix
+* Understanding that correlation does not imply causation
+* Creating two quality groups based on wine quality scores
+* Forming null and alternative hypotheses
+* Comparing mean alcohol content between groups
+* Performing an independent two-sample t-test
+* Interpreting the p-value and statistical significance
+
+➡️ [View notebook](./lab-04-statistics-intution)
+
+---
+
+## Lab 5: Visualization and Mini EDA
+
+Exploring the Wine Quality dataset through visualization and using plots to understand patterns, relationships, and distributions in the data.
+
+Covered:
+
+* Creating visualizations to explore numerical features
+* Using plots to understand distributions and relationships
+* Comparing variables visually across wine quality groups
+* Using visualization as part of exploratory data analysis (EDA)
+* Identifying patterns and trends from the dataset
+* Using visual insights to support data-driven observations
+
+➡️ [View notebook](./lab05-visualization-mini-EDA)
+
+---
+
 ## 🛠️ Libraries Used
 
 * Pandas
 * NumPy
+* Matplotlib
+* Seaborn
+* SciPy
 
 ## 🚀 Key Learnings
 
@@ -102,5 +154,7 @@ Covered:
 * How to identify and handle missing data deliberately
 * How to correct inconsistent data types
 * How to detect duplicates and potential outliers
-* How to validate and document data-cleaning decisions
-* How to transform messy datasets into reliable, analysis-ready data
+* How to use descriptive statistics to understand data
+* How to interpret skewness, correlation, and hypothesis tests
+* How to use visualization for exploratory data analysis
+* How to transform datasets into meaningful insights through statistics and visualization
