@@ -1,7 +1,6 @@
-
 # 🐍 Python Assignments
 
-This repository contains my Python assignments completed as part of my learning journey. Each assignment focuses on developing practical programming skills, problem-solving abilities, Python fundamentals, data processing, statistics, visualization, cloud workflows, and command-line tools.
+This repository contains my Python assignments completed as part of my learning journey. Each assignment focuses on developing practical programming skills, problem-solving abilities, Python fundamentals, data processing, statistics, visualization, cloud workflows, packaging, and command-line tools.
 
 ---
 
@@ -71,13 +70,30 @@ python-assignment/
         │   ├── input/
         │   └── output/
         │
-        └── Labs/
+        ├── Labs/
+        │   ├── README.md
+        │   ├── lab-01-pandas-fundamentals/
+        │   ├── lab-02-numpy-vectorization/
+        │   ├── lab-03-data-cleaning/
+        │   ├── lab-04-statistics-intution/
+        │   └── lab05-visualization-mini-EDA/
+        │
+        └── package/
             ├── README.md
-            ├── lab-01-pandas-fundamentals/
-            ├── lab-02-numpy-vectorization/
-            ├── lab-03-data-cleaning/
-            ├── lab-04-statistics-intution/
-            └── lab05-visualization-mini-EDA/
+            ├── pyproject.toml
+            ├── requirements.txt
+            ├── .gitignore
+            ├── dist/
+            │   ├── csvstat_bharat-0.1.0-py3-none-any.whl
+            │   └── csvstat_bharat-0.1.0.tar.gz
+            ├── src/
+            │   └── csvstat/
+            │       ├── __init__.py
+            │       ├── cli.py
+            │       └── main.py
+            ├── tests/
+            │   └── csvstat-test.py
+            └── data.csv
 ```
 
 ---
@@ -95,6 +111,7 @@ python-assignment/
 | [week1-lab5](https://github.com/bharatkn786/python-assignments/tree/main/week1-lab5)                          | SQL Fundamentals with Chinook Database         | ✅ Completed |
 | [Week-2_Data / aws](https://github.com/bharatkn786/python-assignments/tree/main/Week-2_Data/assesments/aws)   | CSV Profiling on AWS (EC2 + S3 + IAM)          | ✅ Completed |
 | [Week-2_Data / Labs](https://github.com/bharatkn786/python-assignments/tree/main/Week-2_Data/assesments/Labs) | Data Processing, Statistics, and Visualization | ✅ Completed |
+| [Week-2_Data / package](https://github.com/bharatkn786/python-assignments/tree/main/Week-2_Data/assesments/package) | Python Packaging and PyPI Publishing (`csvstat-bharat`) | ✅ Completed |
 
 ---
 
@@ -138,6 +155,12 @@ Through these assignments, I have practiced:
 * Hypothesis testing and p-value interpretation
 * Data visualization with Matplotlib and Seaborn
 * Exploratory Data Analysis (EDA)
+* Python packaging with `pyproject.toml` and `src/` layout
+* Building CLI tools with `argparse` and console-script entry points
+* Unit testing with `pytest`
+* Building distributions with `build` (wheel + sdist)
+* Publishing packages to TestPyPI and PyPI with `twine`
+* API token authentication for package uploads
 
 ---
 
@@ -344,6 +367,28 @@ Covered:
 
 ---
 
+## Week 2 - Package: `csvstat-bharat` (Python Packaging and PyPI Publishing)
+
+Turning the Week 1 CSV profiling tool into a proper, installable, PyPI-published Python package.
+
+Covered:
+
+* Structuring a package with the `src/` layout (`src/csvstat/`)
+* Defining package metadata, dependencies, and CLI entry points in `pyproject.toml`
+* Splitting logic between `cli.py` (argument parsing) and `main.py` (core functions)
+* Writing unit tests with `pytest` covering shape, column-type inference, missing-value count/percentage, numeric statistics, and top-value counts
+* Editable installs for local development (`pip install -e .`)
+* Building distributables with `python -m build` (wheel + sdist)
+* Validating builds with `twine check`
+* Authenticating and uploading to TestPyPI, then production PyPI using API tokens
+* Verifying the published package with a clean `pip install`
+
+📦 Published package: [`csvstat-bharat`](https://pypi.org/project/csvstat-bharat/0.1.0/)
+
+➡️ [View package](https://github.com/bharatkn786/python-assignments/tree/main/Week-2_Data/assesments/package)
+
+---
+
 ## 📚 Week 2 - Key Findings
 
 The Wine Quality dataset was used throughout the Week 2 analysis to understand data processing, cleaning, statistics, and visualization.
@@ -367,6 +412,9 @@ Key findings include:
 * Matplotlib
 * Seaborn
 * SciPy
+* pytest
+* build
+* twine
 
 ---
 
@@ -387,10 +435,13 @@ Key findings include:
 * Using visualization as part of exploratory data analysis
 * Working with AWS EC2, S3, and IAM
 * Following structured Git and GitHub workflows
+* Packaging a Python project for distribution
+* Writing unit tests to validate core logic before release
+* Publishing and versioning a package on PyPI
 * Turning raw datasets into meaningful, analysis-ready insights
 
 ---
 
 ## 🚀 Goal
 
-The goal of this repository is to continuously improve my programming fundamentals, problem-solving skills, Git/GitHub workflow, data analysis skills, cloud knowledge, and practical development skills through hands-on assignments and projects.
+The goal of this repository is to continuously improve my programming fundamentals, problem-solving skills, Git/GitHub workflow, data analysis skills, cloud knowledge, packaging/distribution skills, and practical development skills through hands-on assignments and projects.
