@@ -8,4 +8,4 @@ from .main import (
     get_top_values,
 )
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"

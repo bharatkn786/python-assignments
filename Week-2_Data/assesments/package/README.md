@@ -2,7 +2,7 @@
 
 A lightweight command-line tool for quickly profiling CSV files — get shape, column types, missing values, numeric statistics, and top value counts, all from your terminal.
 
-[![PyPI](https://img.shields.io/badge/pypi-csvstat--bharat-blue)](https://pypi.org/project/csvstat-bharat/0.1.0/)
+[![PyPI](https://img.shields.io/badge/pypi-csvstat--bharat-blue)](https://pypi.org/project/csvstat-bharat/0.1.1/)
 
 ---
 
@@ -27,8 +27,8 @@ package/
 ├── README.md
 │
 ├── dist/                       # Built artifacts (wheel + sdist)
-│   ├── csvstat_bharat-0.1.0-py3-none-any.whl
-│   └── csvstat_bharat-0.1.0.tar.gz
+│   ├── csvstat_bharat-0.1.1-py3-none-any.whl
+│   └── csvstat_bharat-0.1.1.tar.gz
 │
 ├── src/
 │   └── csvstat/
@@ -77,7 +77,7 @@ package/
 ## 💡 Insight
 
 - **Wheels vs sdists:** when you ran `python -m build`, it produced two files — a `.tar.gz` (source distribution) and a `.whl` (wheel). The wheel is a pre-built, zip-based format that `pip` can install directly without re-running your `setup`/`build` step, which is why wheel installs are noticeably faster than sdist installs.
-- **PyPI names are permanent:** once a project name + version (like `csvstat-bharat 0.1.0`) is uploaded to PyPI, it can never be reused — even if you delete it. This is a deliberate anti-supply-chain-attack measure so a malicious package can't later be re-uploaded under a trusted name and version.
+- **PyPI names are permanent:** once a project name + version (like `csvstat-bharat 0.1.1`) is uploaded to PyPI, it can never be reused — even if you delete it. This is a deliberate anti-supply-chain-attack measure so a malicious package can't later be re-uploaded under a trusted name and version.
 
 ---
 
@@ -272,4 +272,4 @@ pip install csvstat-bharat          # verifies the published package installs co
 ## Author
 
 **Bharat**
-Published on PyPI: [csvstat-bharat](https://pypi.org/project/csvstat-bharat/0.1.0/)
+Published on PyPI: [csvstat-bharat](https://pypi.org/project/csvstat-bharat/0.1.1/)

@@ -1,3 +1,5 @@
+import argparse
+
 from .main import (
     read_csv,
     get_shape,
