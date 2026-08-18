@@ -1,3 +1,4 @@
+
 # 📚 Labs
 
 This folder contains the Week 2 lab notebooks focused on data processing, numerical computation, data cleaning, statistics, and visualization using Python's core data science libraries.

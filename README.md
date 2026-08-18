@@ -1,3 +1,4 @@
+
 # 🐍 Python Assignments
 
 This repository contains my Python assignments completed as part of my learning journey. Each assignment focuses on developing practical programming skills, problem-solving abilities, Python fundamentals, data processing, statistics, visualization, cloud workflows, and command-line tools.

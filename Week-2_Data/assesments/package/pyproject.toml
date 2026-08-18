@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+
+[project]
+name = "csvstat-bharat"
+version = "0.1.0"
+
+description = "A command-line tool for analyzing CSV files"
+
+readme = "README.md"
+
+requires-python = ">=3.9"
+
+authors = [
+    {name = "Bharat"}
+]
+
+dependencies = [
+    "pandas>=3.0"
+]
+
+
+[project.scripts]
+csvstat = "csvstat.cli:main"
+
+
+[tool.setuptools.packages.find]
+where = ["src"]
